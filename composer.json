@@ -1,0 +1,20 @@
+{
+    "name": "flow/bitwiser",
+    "description": "Helper class for managing bitwiser flags",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Stephen Frank",
+            "email": "stephen@flowsa.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+
+    },
+		"autoload": {
+			"psr-0": {
+				"Flow\Bitwiser": "src/"
+			}
+		}
+}
