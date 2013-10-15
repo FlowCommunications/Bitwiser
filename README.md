@@ -11,6 +11,7 @@ Example usage
 Create a class that extends AbstractBitwiser and declare the flags your need as class constants.
 
 ```
+:::php
 class PermissionsBitwiser extends AbstractBitwiser
 {
     const CAN_EDIT_POSTS = 0;
@@ -22,6 +23,7 @@ class PermissionsBitwiser extends AbstractBitwiser
 Initialize the class with a starting state and callback
 
 ```
+:::php
 $state = 0; // this value is passed by reference
 
 $permissions = new PermissionsBitwiser($state, function (AbstractBitwiser $bitwiser) {
@@ -44,6 +46,7 @@ Example usage with ORM (eg. Laravel Eloquent) for persisitence
 The end goal is to persist the integer value to a database column while maintaining a clean OO method of managing with the value.
 
 ```
+:::php
 class User extends Model
 {
     public function getPermissionsAttribute()
