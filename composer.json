@@ -9,12 +9,9 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {
-
-    },
 		"autoload": {
 			"psr-0": {
-				"Flow\Bitwiser": "src/"
+				"Flow\\Bitwiser": "src/"
 			}
 		}
 }
