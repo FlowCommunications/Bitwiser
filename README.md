@@ -43,7 +43,7 @@ $permissions->has(PermissionsBitwiser::CAN_DELETE_POSTS); // false
 
 Example usage with ORM (eg. Laravel Eloquent) for persisitence 
 --------------
-The end goal is to persist the integer value to a database column while maintaining a clean OO method of managing with the value.
+The end goal is to persist the integer value to a database column while maintaining a clean OO method of updating the value.
 
 ```
 :::php

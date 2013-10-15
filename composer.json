@@ -1,6 +1,6 @@
 {
     "name": "flow/bitwiser",
-    "description": "Helper class for managing bitwiser flags",
+    "description": "Helper class for managing bitwise flags",
     "license": "MIT",
     "authors": [
         {
