@@ -1,5 +1,5 @@
 <?php
-require "../src/Flow/Bitwiser/AbstractBitwiser.php";
+require __DIR__ . "/../src/Flow/Bitwiser/AbstractBitwiser.php";
 
 use Flow\Bitwiser\AbstractBitwiser;
 
@@ -27,6 +27,19 @@ class BitwiserTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals(5, $fooBitwiser->getState());
         $this->assertEquals(true, $fooBitwiser->hasNot(FooBitwiser::OPTION_B));
+
+        $valueState = $fooBitwiser->state(false);
+        $namedState = $fooBitwiser->state();
+
+        $this->assertEquals(
+            array(FooBitwiser::OPTION_A => true, FooBitwiser::OPTION_B => false, FooBitwiser::OPTION_C => true),
+            $valueState
+        );
+
+        $this->assertEquals(
+            array('OPTION_A' => true, 'OPTION_B' => false, 'OPTION_C' => true),
+            $namedState
+        );
 
     }
 

@@ -8,7 +8,7 @@ Bitwise flags are a convenient way to store multiple true/false values (flags) i
 Example usage
 -------------
 
-Create a class that extends AbstractBitwiser and declare the flags your need as class constants.
+Create a class that extends `AbstractBitwiser` and declare the flags as class constants.
 
 ```
 :::php

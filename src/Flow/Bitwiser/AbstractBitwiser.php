@@ -1,8 +1,5 @@
 <?php
-
-
 namespace Flow\Bitwiser;
-
 
 /**
  * Class AbstractBitwiser
@@ -23,7 +20,12 @@ class AbstractBitwiser
     /**
      * @var array key-value state
      */
-    protected $stateArr = array();
+    protected $namedStateArray = array();
+
+    /**
+     * @var array key-value state
+     */
+    protected $valueStateArray = array();
 
     /**
      * @var callable Change callback
@@ -43,9 +45,7 @@ class AbstractBitwiser
             static::initialize();
         }
 
-        foreach (static::$flags as $name => $flag) {
-            $this->stateArr[$name] = $this->has($flag);
-        }
+        $this->updateStateArr();
     }
 
     /**
@@ -62,6 +62,19 @@ class AbstractBitwiser
     }
 
     /**
+     * Update state array
+     */
+    protected function updateStateArr()
+    {
+        foreach (static::$flags as $name => $flag) {
+            $this->namedStateArray[$name] = $this->has($flag);
+        }
+        foreach (static::$flags as $name => $flag) {
+            $this->valueStateArray[$flag] = $this->has($flag);
+        }
+    }
+
+    /**
      * Has Option
      * @param int $flag
      * @return bool
@@ -72,7 +85,7 @@ class AbstractBitwiser
     }
 
     /**
-     * Get class options
+     * Get class flags
      * @return array
      */
     public static function getFlags()
@@ -81,11 +94,11 @@ class AbstractBitwiser
             static::initialize();
         }
 
-        return self::$flags;
+        return static::$flags;
     }
 
     /**
-     * Has Not Option
+     * ! Has Flag
      *
      * @param int $flag
      * @return bool
@@ -96,17 +109,22 @@ class AbstractBitwiser
     }
 
     /**
-     * Get State
+     * Get Named State Array
      *
+     * @param bool $named
      * @return array
      */
-    public function state()
+    public function state($named = true)
     {
-        return $this->stateArr;
+        if ($named) {
+            return $this->namedStateArray;
+        } else {
+            return $this->valueStateArray;
+        }
     }
 
     /**
-     * Add an option
+     * Add a flag
      *
      * @param int $flag
      * @return $this
@@ -124,6 +142,8 @@ class AbstractBitwiser
      */
     protected function onChange()
     {
+        $this->updateStateArr();
+
         if ($this->onChangeCallback) {
             $cb = $this->onChangeCallback;
             call_user_func_array($cb, array($this));
@@ -131,7 +151,7 @@ class AbstractBitwiser
     }
 
     /**
-     * Remove an option
+     * Remove a flag
      * @param $flag
      * @return $this
      */
@@ -175,5 +195,5 @@ class AbstractBitwiser
         return $this;
     }
 
-
 }
+
