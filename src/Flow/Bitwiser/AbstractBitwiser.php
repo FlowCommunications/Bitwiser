@@ -36,7 +36,7 @@ class AbstractBitwiser
      * @param int $state
      * @param callable $onChangeCallback
      */
-    public function __construct(& $state = 0, callable $onChangeCallback = null)
+    public function __construct(& $state = 0, $onChangeCallback = null)
     {
         $this->state =& $state;
         $this->onChangeCallback = $onChangeCallback;

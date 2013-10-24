@@ -51,7 +51,11 @@ class User extends Model
 {
     public function getPermissionsAttribute()
     {
-        return new PermissionsBitwiser($this->attributes['permissions']);
+        $state = $this->attributes['permissions']; // Don't pass this by reference
+        $self = $this;
+        return new PermissionsBitwiser($state, function ($bitwiser) use ($self) {
+            $self->permissions = $bitwiser->getState();
+        });
     }
 }
 
