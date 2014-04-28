@@ -1,7 +1,7 @@
 Bitwiser
 ========
 
-**Bitwiser** is a utility class to help managing bitwise flags!
+**Bitwiser** is a utility class to help managing bitwise flags.
 
 Bitwise flags are a convenient way to store multiple true/false values (flags) in a single integer based database column. The number of bitwise flags are *however* limited to the maximum value of an integer of the system (which is 64 on a 64bit system or 32 on a 32bit system).
 
@@ -10,8 +10,7 @@ Example usage
 
 Create a class that extends `AbstractBitwiser` and declare the flags as class constants.
 
-```
-:::php
+```php
 class PermissionsBitwiser extends AbstractBitwiser
 {
     const CAN_EDIT_POSTS = 0;
@@ -22,8 +21,7 @@ class PermissionsBitwiser extends AbstractBitwiser
 
 Initialize the class with a starting state and callback
 
-```
-:::php
+```php
 $state = 0; // this value is passed by reference
 
 $permissions = new PermissionsBitwiser($state, function (AbstractBitwiser $bitwiser) {
@@ -45,8 +43,7 @@ Example usage with ORM (eg. Laravel Eloquent) for persisitence
 --------------
 The end goal is to persist the integer value to a database column while maintaining a clean OO method of updating the value.
 
-```
-:::php
+```php
 class User extends Model
 {
     public function getPermissionsAttribute()
@@ -67,8 +64,6 @@ $user->save();
 
 $user->permissions->has(PermissionsBitwiser::CAN_DELETE_POSTS); // false
 $user->permissions->has(PermissionsBitwiser::CAN_CREATE_USERS); // true. etc
-
-
 ```
 
 
