@@ -195,5 +195,15 @@ class AbstractBitwiser
         return $this;
     }
 
+    public function jsonSerialize()
+    {
+        return $this->namedStateArray;
+    }
+
+    public function __sleep()
+    {
+        return array('namedStateArray');
+    }
+
 }
 
